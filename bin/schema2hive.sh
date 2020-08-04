@@ -465,7 +465,7 @@ if [ ! "${HDFS_EXTENSION}" = "" ]; then
 fi
 
 # The schema file
-SCHEMA_FILE=${WORK_DIR}/${CSV_FILENAME}.schema
+SCHEMA_FILE=${WORK_DIR}/${CSV_FILENAME}.hql
 
 # The Hive CREATE TABLE file
 HIVE_TABLE_FILE=${WORK_DIR}/${CSV_FILENAME}.hql
@@ -518,12 +518,12 @@ INSERT OVERWRITE TABLE ${PARQUET_DB_NAME}${PARQUET_SEP}${PARQUET_TABLE_NAME} SEL
 
 # Creates the link to the CSV file
 rm -f "${WORK_DIR}/${HDFS_BASENAME}"
-ln -s "${CSV_DIR}/${CSV_BASENAME}" "${WORK_DIR}/${HDFS_BASENAME}"
+# ln -s "${CSV_DIR}/${CSV_BASENAME}" "${WORK_DIR}/${HDFS_BASENAME}"
 
 # Generates the Hive CREATE TABLE file
-rm -f "${HIVE_TABLE_FILE}"
-touch "${HIVE_TABLE_FILE}"
-echo -e "${HIVE_TEMPLATE}" > "${HIVE_TABLE_FILE}"
+# rm -f "${HIVE_TABLE_FILE}"
+# touch "${HIVE_TABLE_FILE}"
+# echo -e "${HIVE_TEMPLATE}" > "${HIVE_TABLE_FILE}"
 
 # Generates the Parquet CREATE TABLE file if the Parquet table name exists
 if [ ! "${PARQUET_TABLE_NAME}" = "" ]; then
@@ -561,7 +561,7 @@ if [ "${PARQUET_CREATE}" = "1" ]; then
 fi
 
 # Action to do if that script has been called by a parent script
-if [ "${PARENT_CALL}" = "1" ]; then
-        rm -rf "${SCHEMA_FILE}"
-fi
+# if [ "${PARENT_CALL}" = "1" ]; then
+#         rm -rf "${SCHEMA_FILE}"
+# fi
 
